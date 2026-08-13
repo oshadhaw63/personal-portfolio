@@ -6,6 +6,7 @@ import type { Command } from "@/components/command-palette";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { profile, projects } from "@/data/portfolio";
+import { siteUrl } from "@/lib/site";
 
 import "./globals.css";
 
@@ -23,7 +24,6 @@ const code = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://oshadha-wijayarathne.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
