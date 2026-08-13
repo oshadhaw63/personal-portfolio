@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oshadha Wijayarathne — CV</title>
+  <style>
+    @page { size: A4; margin: 12mm 14mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #17213d; font: 9.2pt/1.38 Arial, Helvetica, sans-serif; }
+    a { color: #224eb6; text-decoration: none; }
+    header { border-bottom: 2px solid #17213d; padding-bottom: 8px; }
+    h1 { margin: 0; font-size: 24pt; letter-spacing: -.5px; }
+    .subtitle { margin: 2px 0 5px; color: #4b5d83; font-size: 10pt; font-weight: 700; }
+    .contact { display: flex; flex-wrap: wrap; gap: 3px 12px; color: #46536f; font-size: 8.6pt; }
+    section { margin-top: 11px; }
+    h2 { margin: 0 0 5px; color: #224eb6; font-size: 8.8pt; letter-spacing: 1.15px; text-transform: uppercase; }
+    h3 { margin: 0; font-size: 9.6pt; }
+    p { margin: 2px 0; }
+    ul { margin: 3px 0 0; padding-left: 16px; }
+    li { margin: 1.4px 0; }
+    .row { display: flex; justify-content: space-between; gap: 16px; }
+    .row > :first-child { flex: 1; }
+    .date { flex: none; color: #4b5d83; font-size: 8.6pt; font-weight: 700; white-space: nowrap; }
+    .meta { color: #4b5d83; font-size: 8.6pt; }
+    .project { margin-top: 6px; break-inside: avoid; }
+    .project:first-of-type { margin-top: 0; }
+    .stack { color: #4b5d83; font-size: 8.2pt; font-style: italic; }
+    .skills { display: grid; grid-template-columns: 122px 1fr; gap: 2px 8px; }
+    .skills strong { color: #17213d; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+    .privacy { margin-top: 10px; border-top: 1px solid #cfd6e4; padding-top: 5px; color: #68748d; font-size: 7.5pt; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Oshadha Wijayarathne</h1>
+    <p class="subtitle">Computer Science &amp; Engineering Undergraduate · Software Engineering</p>
+    <div class="contact">
+      <span>Galle, Sri Lanka</span>
+      <a href="mailto:oshadhaw.23@cse.mrt.ac.lk">oshadhaw.23@cse.mrt.ac.lk</a>
+      <a href="https://github.com/oshadhaw63">github.com/oshadhaw63</a>
+      <a href="https://www.linkedin.com/in/oshadha-wijayarathne-2a631734a/">linkedin.com/in/oshadha-wijayarathne-2a631734a</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Profile</h2>
+    <p>Computer Science and Engineering undergraduate at the University of Moratuwa with hands-on experience building full-stack applications, mobile identity workflows, backend systems, developer tools, and systems-oriented academic projects. Seeking a software engineering internship focused on reliable and maintainable software.</p>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="row"><div><h3>University of Moratuwa, Sri Lanka</h3><p>B.Sc. Engineering (Hons) in Computer Science &amp; Engineering · CGPA: 3.76 / 4.00</p></div><span class="date">2024 — Present</span></div>
+    <ul><li>Dean’s List: Semesters 3 and 4.</li><li>Coursework: Data Structures &amp; Algorithms, Database Systems, Operating Systems, Computer Networks, Software Engineering, Computer Architecture, and Advanced Software Engineering.</li></ul>
+    <div class="row" style="margin-top:6px"><div><h3>Institute of Java and Software Engineering, Sri Lanka</h3><p>Comprehensive Master Java Developer Diploma · 8 months</p></div><span class="date">2023</span></div>
+    <p class="meta">Java, OOP, MySQL, application architecture, design patterns, web development, React, Spring Boot, and JavaFX.</p>
+    <div class="row" style="margin-top:6px"><div><h3>Richmond College, Galle</h3><p>G.C.E. Advanced Level · 3 A passes</p></div><span class="date">2022</span></div>
+  </section>
+
+  <section>
+    <h2>Selected Projects</h2>
+    <article class="project">
+      <div class="row"><h3>RepoLens — Codebase Analysis &amp; Dependency Visualisation <span class="meta">(Individual · In progress)</span></h3><a href="https://github.com/oshadhaw63/RepoLens">GitHub</a></div>
+      <p class="stack">Next.js, TypeScript, TypeScript Compiler API, React Flow, Tailwind CSS</p>
+      <ul><li>Built an AST-based explorer that scans local workspaces or public GitHub repositories, extracts imports, exports, functions, and classes, and constructs an interactive dependency graph.</li><li>Implemented ranked repository search, external-dependency summaries, an explainable onboarding path, and rule-based file-risk signals.</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="row"><h3>UniAttend — Smart Attendance Platform <span class="meta">(Team of 4 · In progress)</span></h3><a href="https://github.com/Smart-Attendance-Group-27/smart-attendance-platform">GitHub</a></div>
+      <p class="stack">React Native, Expo, TypeScript, Keycloak, OpenID Connect, PostgreSQL, GitHub Actions</p>
+      <ul><li>Established the mobile foundation and implemented the merged Keycloak Authorization Code Flow with PKCE, secure token storage, session restoration and refresh, logout, authentication-based routing, and student profile workflow.</li><li>Configured Jest, React Native Testing Library, and GitHub Actions mobile checks. Current feature-branch work adds token validation, Keycloak user mapping, protected profile endpoints, and geofence validation.</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="row"><h3>Pharma Availability Control Tower <span class="meta">(Team of 4 · Working MVP)</span></h3><a href="https://github.com/JPabasara/pharma-availability-control-tower">GitHub</a></div>
+      <p class="stack">FastAPI, Next.js, SQLAlchemy, MySQL, Docker, Render</p>
+      <ul><li>Built substantial FastAPI route groups for inputs, dashboard data, orchestration, plan review, reports, and demo operations in a planner-facing pharmaceutical distribution MVP.</li><li>Added vessel and lorry operational simulators, deployment configuration, and responsive frontend-shell improvements. Model development is a team outcome and is not claimed individually.</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="row"><h3>Disaster Response System <span class="meta">(Team of 20)</span></h3><a href="https://github.com/Disaster-Response-System-Group-J/disaster-response-system">GitHub</a></div>
+      <p class="stack">Next.js, TypeScript, Socket.IO, Kafka, PostgreSQL, Docker, Vitest</p>
+      <ul><li>Built the initial command-centre pages and interactive incident map plus authentication context, reusable route guards, typed permissions, shared contracts, mock data, and tests for permissions, filters, validation, and dashboard statistics.</li><li>Later team work connected the map to live Socket.IO updates; that integration is not claimed as an individual contribution.</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="row"><h3>Flower Exchange — C++ Order-Matching Simulator <span class="meta">(Individual)</span></h3><a href="https://github.com/oshadhaw63/Flower-Exchange-LSEG">GitHub</a></div>
+      <p class="stack">C++, STL, Multithreading, TCP/IP, Node.js, WebSockets, React</p>
+      <ul><li>Implemented order validation, price-time priority, partial executions, per-book locking, a multithreaded TCP server, and batch CSV processing.</li><li>Connected a React dashboard through a Node.js Socket.IO-to-TCP bridge for live order entry and execution reports.</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="row"><h3>RPAL Interpreter <span class="meta">(Team of 2)</span></h3><a href="https://github.com/oshadhaw63/rpal-interpreter">GitHub</a></div>
+      <p class="stack">Java, Lexical Analysis, Recursive-Descent Parsing, AST, CSE Machine</p>
+      <ul><li>Co-developed a Java pipeline that tokenises RPAL, constructs and standardises an abstract syntax tree, and evaluates programs using a Control-Stack-Environment machine.</li></ul>
+    </article>
+  </section>
+
+  <section class="two-col">
+    <div>
+      <h2>Technical Skills</h2>
+      <div class="skills">
+        <strong>Languages</strong><span>C++, Java, Python, TypeScript, JavaScript, SQL</span>
+        <strong>Backend</strong><span>FastAPI, Node.js, Express, REST APIs, SQLAlchemy, Spring Boot</span>
+        <strong>Frontend &amp; mobile</strong><span>React, Next.js, React Native, Expo, Redux Toolkit, Tailwind CSS</span>
+        <strong>Data &amp; messaging</strong><span>PostgreSQL, MySQL, MongoDB, Redis, Kafka</span>
+        <strong>Authentication</strong><span>Keycloak, OAuth 2.0, OpenID Connect, PKCE, JWT, Spring Security</span>
+        <strong>Cloud &amp; DevOps</strong><span>AWS, Docker, Git, GitHub Actions</span>
+        <strong>Testing</strong><span>Jest, React Native Testing Library, Pytest, Vitest</span>
+      </div>
+    </div>
+    <div>
+      <h2>Certifications &amp; Training</h2>
+      <ul><li>High-Performance and Mission-Critical Software Development Using C++ — LSEG</li><li>AWS Academy Graduate: Cloud Foundations</li><li>AWS Academy Graduate: Microservices and CI/CD Pipeline Builder</li></ul>
+      <h2 style="margin-top:10px">Activities</h2>
+      <ul><li>Partnership Development Committee Member — CSESS, University of Moratuwa</li><li>Partnership Development Committee Member — Hit the Grounds</li><li>Publicity Committee Member — SLIoT Competition</li></ul>
+    </div>
+  </section>
+
+  <p class="privacy">Public portfolio version · Telephone number, private address, and referee contact details intentionally omitted.</p>
+</body>
+</html>
