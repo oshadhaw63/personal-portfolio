@@ -1,54 +1,36 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 
-import type { Command } from "@/components/command-palette";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import { profile, projects } from "@/data/portfolio";
+import { profile } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site";
 
 import "./globals.css";
 
-const display = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-display",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const code = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-code",
-  display: "swap",
-});
-
+const description =
+  "Portfolio of Oshadha Wijayarathne, a Computer Science and Engineering undergraduate at the University of Moratuwa building backend services, full-stack products, and developer tools.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} — Software Engineering Portfolio`,
+    default: `${profile.name} — ${profile.role}`,
     template: `%s | ${profile.name}`,
   },
-  description:
-    "Software engineering portfolio of Oshadha Wijayarathne, a Computer Science and Engineering undergraduate at the University of Moratuwa.",
-  keywords: [
-    "Oshadha Wijayarathne",
-    "software engineering portfolio",
-    "University of Moratuwa",
-    "computer science",
-    "backend engineering",
-    "full-stack engineering",
-    "developer tools",
-  ],
+  description,
   authors: [{ name: profile.name, url: profile.github }],
   creator: profile.name,
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${profile.name} — Software Engineering Portfolio`,
-    description:
-      "Full-stack applications, backend systems, developer tools, and systems-oriented academic projects.",
+    title: `${profile.name} — ${profile.role}`,
+    description,
     type: "website",
     locale: "en_US",
     url: "/",
@@ -56,39 +38,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: `${profile.name} — Software Engineering Portfolio`,
-    description:
-      "Full-stack applications, backend systems, developer tools, and systems-oriented academic projects.",
+    title: `${profile.name} — ${profile.role}`,
+    description,
   },
-  icons: {
-    icon: "/icon.svg",
-  },
+  icons: { icon: "/icon.svg" },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#04060a",
-  colorScheme: "dark",
+  colorScheme: "light dark",
 };
-
-const commands: Command[] = [
-  { label: "About", href: "/#about", group: "section", hint: "profile" },
-  { label: "Projects", href: "/#projects", group: "section", hint: "selected work" },
-  { label: "Stack", href: "/#stack", group: "section", hint: "tools" },
-  { label: "Education", href: "/#education", group: "section", hint: "timeline" },
-  { label: "Contact", href: "/#contact", group: "section", hint: "get in touch" },
-  ...projects.map((project) => ({
-    label: project.title,
-    href: `/projects/${project.slug}`,
-    group: "project",
-    hint: project.eyebrow,
-  })),
-  { label: "GitHub", href: profile.github, group: "link", hint: "oshadhaw63", external: true },
-  { label: "LinkedIn", href: profile.linkedin, group: "link", hint: "profile", external: true },
-  { label: "Email", href: `mailto:${profile.email}`, group: "link", hint: profile.email, external: true },
-  { label: "Download CV", href: profile.cv, group: "link", hint: "pdf", external: true },
-];
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   const structuredData = {
@@ -110,12 +70,12 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   };
 
   return (
-    <html lang="en" className={`${display.variable} ${code.variable}`}>
-      <body className="min-h-screen bg-void text-text antialiased">
+    <html lang="en" className={inter.variable}>
+      <body className="min-h-screen antialiased">
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>
-        <Header commands={commands} />
+        <Header />
         <div id="main-content">{children}</div>
         <Footer />
         <script

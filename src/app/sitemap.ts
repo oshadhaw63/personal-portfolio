@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/projects/${project.slug}`,
       lastModified,
       changeFrequency: "monthly" as const,
-      priority: project.featured ? 0.9 : 0.75,
+      priority: 0.8,
     })),
   ];
 }
