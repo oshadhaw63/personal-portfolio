@@ -1,4 +1,4 @@
-import type { EducationItem, Project, SkillGroup } from "@/types/portfolio";
+import type { Achievement, Activity, Certification, EducationItem, Project, SkillGroup } from "@/types/portfolio";
 
 export const profile = {
   name: "Oshadha Wijayarathne",
@@ -14,6 +14,14 @@ export const profile = {
   cv: "/oshadha-wijayarathne-cv.pdf",
   intro:
     "I'm a Computer Science and Engineering undergraduate at the University of Moratuwa. I build backend services, full-stack products, and developer tools, and I'm looking for a software engineering internship.",
+  availability: "Open to software engineering internships",
+  focus: "Backend services, full-stack products, and developer tools",
+  interests: "State transitions, service boundaries, and dependency tracing",
+  about: [
+    "I like the parts of engineering where correctness meets product behaviour: modelling state transitions, drawing sensible service boundaries, tracing dependencies, and making a complicated workflow understandable to the person using it.",
+    "Most of my work so far has been in university projects and team builds, ranging from a C++ matching engine to an authenticated mobile app and an operations backend. Each project page here says what is actually implemented, what is not, and which parts were mine.",
+    "I am looking for an internship where I can contribute to maintainable software and learn from people who care about it.",
+  ],
 } as const;
 
 export const projects: Project[] = [
@@ -21,8 +29,7 @@ export const projects: Project[] = [
     slug: "repolens",
     title: "RepoLens",
     kind: "Developer tooling",
-    summary:
-      "An explorer that turns a JavaScript or TypeScript repository into a searchable dependency map.",
+    summary: "An explorer that turns a JavaScript or TypeScript repository into a searchable dependency map.",
     overview:
       "Reading an unfamiliar codebase usually means tracing imports and symbols by hand. RepoLens parses the source with the TypeScript Compiler API and renders the result as an interactive graph, with search across files and symbols, a suggested reading order for new contributors, and simple risk signals.",
     role: "Solo project",
@@ -46,21 +53,12 @@ export const projects: Project[] = [
     slug: "uniattend",
     title: "UniAttend",
     kind: "Mobile & identity",
-    summary:
-      "A React Native student attendance app where I own the login and session layer.",
+    summary: "A React Native student attendance app where I own the login and session layer.",
     overview:
       "UniAttend is an ongoing university attendance platform built by a team of four. I set up the Expo mobile app and built the identity layer: OpenID Connect login with PKCE, secure token storage, session restoration and refresh, logout, and route protection for student screens.",
     role: "Team of 4",
     status: "In progress",
-    technologies: [
-      "React Native",
-      "Expo",
-      "TypeScript",
-      "Keycloak",
-      "OpenID Connect",
-      "PostgreSQL",
-      "GitHub Actions",
-    ],
+    technologies: ["React Native", "Expo", "TypeScript", "Keycloak", "OpenID Connect", "PostgreSQL", "GitHub Actions"],
     repository: "https://github.com/Smart-Attendance-Group-27/smart-attendance-platform",
     highlights: [
       "Expo Router app foundation with shared UI components and typed feature services.",
@@ -107,8 +105,7 @@ export const projects: Project[] = [
     slug: "disaster-response-system",
     title: "Disaster Response System",
     kind: "Distributed systems",
-    summary:
-      "The web command centre for a 20-person platform: incidents, alerts, resources, and role-aware access.",
+    summary: "The web command centre for a 20-person platform: incidents, alerts, resources, and role-aware access.",
     overview:
       "An academic platform split across device, data, interaction, and platform-security subgroups. I built the command centre that sits on top of it: the dashboard pages, the interactive incident map, resource and report workflows, and a shared permission model that navigation, route guards, and actions all read from.",
     role: "Team of 20",
@@ -131,8 +128,7 @@ export const projects: Project[] = [
     slug: "flower-exchange",
     title: "Flower Exchange",
     kind: "C++ systems",
-    summary:
-      "A C++ order matching engine with price-time priority, partial fills, and a live browser dashboard.",
+    summary: "A C++ order matching engine with price-time priority, partial fills, and a live browser dashboard.",
     overview:
       "An order exchange simulator built end to end: a C++ matching engine with validation and execution reports, a batch CSV mode, a multithreaded TCP server, a Node.js bridge, and a React dashboard that shows fills as they happen.",
     role: "Solo project",
@@ -156,8 +152,7 @@ export const projects: Project[] = [
     slug: "rpal-interpreter",
     title: "RPAL Interpreter",
     kind: "Programming languages",
-    summary:
-      "A Java interpreter for RPAL: scanner, recursive-descent parser, tree standardisation, and a CSE machine.",
+    summary: "A Java interpreter for RPAL: scanner, recursive-descent parser, tree standardisation, and a CSE machine.",
     overview:
       "A Programming Languages coursework project that takes RPAL source through every stage of execution. High-level syntax is standardised into a smaller set of core tree forms first, which keeps the Control-Stack-Environment machine focused on a compact runtime model.",
     role: "Team of 2",
@@ -180,20 +175,93 @@ export const projects: Project[] = [
 ];
 
 export const skillGroups: SkillGroup[] = [
-  { category: "Languages", skills: ["C++", "Java", "Python", "TypeScript", "JavaScript", "SQL"] },
-  { category: "Backend", skills: ["FastAPI", "Node.js", "Express", "Spring Boot", "SQLAlchemy", "REST APIs"] },
-  { category: "Frontend & mobile", skills: ["React", "Next.js", "React Native", "Expo", "Redux Toolkit", "Tailwind CSS"] },
-  { category: "Data", skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Kafka"] },
-  { category: "Auth & security", skills: ["Keycloak", "OAuth 2.0", "OpenID Connect", "PKCE", "JWT", "Spring Security"] },
-  { category: "Tooling", skills: ["Docker", "AWS", "Git", "GitHub Actions", "Jest", "Pytest", "Vitest"] },
+  {
+    id: "languages",
+    category: "Languages",
+    skills: [
+      { name: "C++", symbol: "C+" },
+      { name: "Java", symbol: "Jv" },
+      { name: "Python", symbol: "Py" },
+      { name: "TypeScript", symbol: "Ts" },
+      { name: "JavaScript", symbol: "Js" },
+      { name: "SQL", symbol: "Sq" },
+    ],
+  },
+  {
+    id: "backend",
+    category: "Backend",
+    skills: [
+      { name: "FastAPI", symbol: "Fa" },
+      { name: "Node.js", symbol: "Nd" },
+      { name: "Express", symbol: "Ex" },
+      { name: "REST APIs", symbol: "Ra" },
+      { name: "SQLAlchemy", symbol: "Sa" },
+      { name: "Spring Boot", symbol: "Sb" },
+    ],
+  },
+  {
+    id: "frontend",
+    category: "Frontend & mobile",
+    skills: [
+      { name: "React", symbol: "Re" },
+      { name: "Next.js", symbol: "Nx" },
+      { name: "React Native", symbol: "Rn" },
+      { name: "Expo", symbol: "Ep" },
+      { name: "Redux Toolkit", symbol: "Rx" },
+      { name: "Tailwind CSS", symbol: "Tw" },
+    ],
+  },
+  {
+    id: "data",
+    category: "Data & messaging",
+    skills: [
+      { name: "PostgreSQL", symbol: "Pg" },
+      { name: "MySQL", symbol: "My" },
+      { name: "MongoDB", symbol: "Mg" },
+      { name: "Redis", symbol: "Rd" },
+      { name: "Kafka", symbol: "Kf" },
+    ],
+  },
+  {
+    id: "auth",
+    category: "Auth & security",
+    skills: [
+      { name: "Keycloak", symbol: "Kc" },
+      { name: "OAuth 2.0", symbol: "Oa" },
+      { name: "OpenID Connect", symbol: "Oi" },
+      { name: "PKCE", symbol: "Pk" },
+      { name: "JWT", symbol: "Jw" },
+      { name: "Spring Security", symbol: "Ss" },
+    ],
+  },
+  {
+    id: "cloud",
+    category: "Cloud & DevOps",
+    skills: [
+      { name: "AWS", symbol: "Aw" },
+      { name: "Docker", symbol: "Dk" },
+      { name: "Git", symbol: "Gt" },
+      { name: "GitHub Actions", symbol: "Ga" },
+    ],
+  },
+  {
+    id: "testing",
+    category: "Testing",
+    skills: [
+      { name: "Jest", symbol: "Je" },
+      { name: "React Native Testing Library", symbol: "Rl", label: "RN Testing Library" },
+      { name: "Pytest", symbol: "Pt" },
+      { name: "Vitest", symbol: "Vt" },
+    ],
+  },
 ];
 
 export const education: EducationItem[] = [
   {
-    institution: "University of Moratuwa",
-    credential: "B.Sc. Engineering (Hons) in Computer Science & Engineering",
-    period: "2024 — Present",
-    detail: "CGPA 3.76 / 4.00. Dean's List in semesters 3 and 4.",
+    institution: "Richmond College, Galle",
+    credential: "G.C.E. Advanced Level",
+    period: "2022",
+    detail: "Three A passes.",
   },
   {
     institution: "Institute of Java and Software Engineering",
@@ -202,18 +270,80 @@ export const education: EducationItem[] = [
     detail: "Java, OOP, MySQL, design patterns, Spring Boot, React, and JavaFX over eight months.",
   },
   {
-    institution: "Richmond College, Galle",
-    credential: "G.C.E. Advanced Level",
-    period: "2022",
-    detail: "Three A passes.",
+    institution: "University of Moratuwa",
+    credential: "B.Sc. Engineering (Hons) in Computer Science & Engineering",
+    period: "2024 — Present",
+    detail: "CGPA 3.76 / 4.00. Dean's List in semesters 3 and 4.",
+    coursework: [
+      "Data Structures & Algorithms",
+      "Database Systems",
+      "Operating Systems",
+      "Computer Networks",
+      "Software Engineering",
+      "Computer Architecture",
+      "Advanced Software Engineering",
+    ],
   },
 ];
 
-export const certifications = [
-  "High-Performance and Mission-Critical Software Development Using C++ — LSEG",
-  "AWS Academy Graduate: Cloud Foundations",
-  "AWS Academy Graduate: Microservices and CI/CD Pipeline Builder",
-] as const;
+export const activities: Activity[] = [
+  { role: "Partnership Development Committee Member", organization: "CSESS, University of Moratuwa" },
+  { role: "Partnership Development Committee Member", organization: "Hit the Grounds" },
+  { role: "Publicity Committee Member", organization: "SLIoT Competition" },
+];
+
+export const certifications: Certification[] = [
+  { title: "High-Performance and Mission-Critical Software Development Using C++", issuer: "LSEG" },
+  { title: "AWS Academy Graduate: Cloud Foundations", issuer: "AWS Academy" },
+  { title: "AWS Academy Graduate: Microservices and CI/CD Pipeline Builder", issuer: "AWS Academy" },
+];
+
+export const achievements: Achievement[] = [
+  {
+    value: 3.76,
+    decimals: 2,
+    suffix: "/ 4.00",
+    title: "CGPA",
+    caption: "B.Sc. Engineering (Hons) in Computer Science & Engineering, University of Moratuwa.",
+    icon: "cap",
+  },
+  {
+    value: 2,
+    title: "Dean's List semesters",
+    caption: "Named to the Dean's List in semesters 3 and 4.",
+    icon: "star",
+  },
+  {
+    value: projects.length,
+    title: "Projects built",
+    caption: "From a C++ matching engine to an authenticated mobile app and an operations backend.",
+    icon: "stack",
+  },
+  {
+    value: 20,
+    title: "People on my largest team",
+    caption: "The Disaster Response System, where I built the web command centre.",
+    icon: "people",
+  },
+  {
+    value: 3,
+    title: "A passes at A/Level",
+    caption: "G.C.E. Advanced Level at Richmond College, Galle.",
+    icon: "letter",
+  },
+];
+
+export const allSkills = skillGroups.flatMap((group) => group.skills);
+
+/** Projects whose technology list names this skill exactly. */
+export function getProjectsUsing(skill: string) {
+  return projects.filter((project) => project.technologies.includes(skill));
+}
+
+/** Certifications whose title names this skill. */
+export function getCertificationsFor(skill: string) {
+  return certifications.filter((certification) => certification.title.includes(skill));
+}
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

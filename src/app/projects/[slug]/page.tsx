@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ArrowUpRightIcon, GithubIcon } from "@/components/icons";
+import { ArrowRightIcon, ArrowUpRightIcon, GithubIcon } from "@/components/icons";
+import { TechList } from "@/components/project-showcase";
+import { ProjectVisual } from "@/components/project-visual";
 import { getProject, profile, projects } from "@/data/portfolio";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+const pad = (value: number) => String(value).padStart(2, "0");
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -43,89 +46,97 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const next = projects[(index + 1) % projects.length];
 
   return (
-    <main className="wrap py-14 sm:py-20">
-      <Link href="/#projects" className="text-sm link-quiet">
-        ← Back to projects
+    <main className="wrap pb-20 pt-10 sm:pb-28 sm:pt-14">
+      <Link href="/#work" className="link-quiet text-[0.875rem]">
+        ← Back to work
       </Link>
 
-      <article className="mt-10 max-w-3xl">
-        <p className="text-sm text-muted">
-          {project.kind} · {project.role} · {project.status}
-        </p>
+      <article className="mt-12">
+        <header className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-end lg:gap-16">
+          <div className="rise">
+            <p className="eyebrow">
+              <span className="eyebrow-num">
+                {pad(index + 1)} / {pad(projects.length)}
+              </span>
+              <span className="eyebrow-rule" aria-hidden="true" />
+              <span>{project.kind}</span>
+            </p>
 
-        <h1 className="mt-3 text-balance text-[clamp(2rem,5.5vw,3rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
-          {project.title}
-        </h1>
+            <h1 className="heading-xl mt-6 text-balance">{project.title}</h1>
 
-        <p className="mt-6 text-pretty text-lg leading-8 text-muted">{project.overview}</p>
+            <p className="lede mt-7 text-pretty">{project.overview}</p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a href={project.repository} target="_blank" rel="noreferrer" className="btn">
-            <GithubIcon className="size-4" />
-            Source code
-          </a>
-          {project.liveUrl ? (
-            <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn">
-              Live site
-              <ArrowUpRightIcon className="size-4" />
-            </a>
-          ) : null}
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              <a href={project.repository} target="_blank" rel="noreferrer" className="pill pill-solid">
+                <GithubIcon className="size-4" />
+                Source code
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+              {project.liveUrl ? (
+                <a href={project.liveUrl} target="_blank" rel="noreferrer" className="pill">
+                  Live site
+                  <ArrowUpRightIcon className="size-4" />
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              ) : null}
+            </div>
+          </div>
+
+          <div className="rise" style={{ animationDelay: "120ms" }}>
+            <ProjectVisual project={project} sizes="(min-width: 1024px) 34rem, 92vw" />
+            <dl className="mt-5 grid grid-cols-2 gap-4 text-[0.875rem]">
+              <div className="border-l border-line pl-4">
+                <dt className="text-[0.6875rem] uppercase tracking-[0.16em] text-muted">Team</dt>
+                <dd className="mt-1">{project.role}</dd>
+              </div>
+              <div className="border-l border-line pl-4">
+                <dt className="text-[0.6875rem] uppercase tracking-[0.16em] text-muted">Status</dt>
+                <dd className="mt-1">{project.status}</dd>
+              </div>
+            </dl>
+          </div>
+        </header>
+
+        <div className="mt-20 grid gap-14 border-t border-line pt-14 lg:grid-cols-2 lg:gap-16">
+          <section aria-labelledby="built-title">
+            <h2 id="built-title" className="text-[clamp(1.75rem,3vw,2.25rem)] font-semibold tracking-tight">
+              What I <span className="serif text-accent">built</span>
+            </h2>
+            <ol className="mt-7 space-y-5">
+              {project.highlights.map((highlight, itemIndex) => (
+                <li key={highlight} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-3 text-[1.0625rem] leading-8">
+                  <span className="pt-1 text-[0.75rem] tabular-nums text-muted">{pad(itemIndex + 1)}</span>
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="limits-title">
+            <h2 id="limits-title" className="text-[clamp(1.75rem,3vw,2.25rem)] font-semibold tracking-tight">
+              Scope and <span className="serif text-accent">limits</span>
+            </h2>
+            <ul className="mt-7 space-y-5">
+              {project.notes.map((note) => (
+                <li key={note} className="flex gap-4 text-[1.0625rem] leading-8 text-muted">
+                  <span className="mt-4 h-px w-4 shrink-0 bg-muted" aria-hidden="true" />
+                  <span>{note}</span>
+                </li>
+              ))}
+            </ul>
+
+            <h2 className="mt-12 text-[0.6875rem] font-medium uppercase tracking-[0.16em] text-muted">Built with</h2>
+            <TechList technologies={project.technologies} className="mt-4" />
+          </section>
         </div>
-
-        {project.image ? (
-          <figure className="mt-12 overflow-hidden rounded-xl border border-line">
-            <Image
-              src={project.image.src}
-              alt={project.image.alt}
-              width={1600}
-              height={900}
-              className="h-auto w-full"
-              sizes="(max-width: 768px) 100vw, 48rem"
-            />
-          </figure>
-        ) : null}
-
-        <section className="mt-12">
-          <h2 className="text-xs uppercase tracking-[0.12em] text-muted">What I built</h2>
-          <ul className="mt-5 space-y-3.5">
-            {project.highlights.map((highlight) => (
-              <li key={highlight} className="flex gap-3 text-[1.0625rem] leading-8">
-                <span className="mt-3 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-12">
-          <h2 className="text-xs uppercase tracking-[0.12em] text-muted">Scope and limits</h2>
-          <ul className="mt-5 space-y-3.5">
-            {project.notes.map((note) => (
-              <li key={note} className="flex gap-3 text-[1.0625rem] leading-8 text-muted">
-                <span className="mt-3 size-1.5 shrink-0 rounded-full bg-line" aria-hidden="true" />
-                <span>{note}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-12 border-t border-line pt-8">
-          <h2 className="text-xs uppercase tracking-[0.12em] text-muted">Built with</h2>
-          <ul className="mt-4 flex flex-wrap gap-1.5">
-            {project.technologies.map((technology) => (
-              <li key={technology} className="tag">
-                {technology}
-              </li>
-            ))}
-          </ul>
-        </section>
       </article>
 
-      <nav className="mt-16 max-w-3xl border-t border-line pt-8" aria-label="Next project">
+      <nav className="mt-20 border-t border-line pt-10" aria-label="Next project">
         <Link href={`/projects/${next.slug}`} className="group inline-block">
-          <span className="text-xs uppercase tracking-[0.12em] text-muted">Next project</span>
-          <span className="mt-2 block text-xl font-semibold tracking-tight transition group-hover:text-accent">
-            {next.title} →
+          <span className="eyebrow">Next project</span>
+          <span className="mt-3 flex items-center gap-3 text-[clamp(1.75rem,4vw,3rem)] font-semibold tracking-[-0.035em]">
+            <span className="serif text-accent">{next.title}</span>
+            <ArrowRightIcon className="size-6 transition-transform duration-300 group-hover:translate-x-1" />
           </span>
         </Link>
       </nav>

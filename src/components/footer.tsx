@@ -1,43 +1,40 @@
-import Link from "next/link";
-
+import { GithubIcon, LinkedinIcon, MailIcon } from "@/components/icons";
 import { profile } from "@/data/portfolio";
 
-const links = [
-  { href: "/#projects", label: "Projects" },
-  { href: "/#about", label: "About" },
-  { href: "/#education", label: "Education" },
-  { href: "/#contact", label: "Contact" },
+const socials = [
+  { href: profile.github, label: "GitHub", Icon: GithubIcon, external: true },
+  { href: profile.linkedin, label: "LinkedIn", Icon: LinkedinIcon, external: true },
+  { href: `mailto:${profile.email}`, label: "Email", Icon: MailIcon, external: false },
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-line">
-      <div className="wrap flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-muted">
-          © {new Date().getFullYear()} {profile.name}
+    <footer className="ink-section">
+      <div className="wrap flex flex-col gap-6 border-t hairline py-8 sm:flex-row sm:items-center sm:justify-between">
+        <p className="ink-muted text-[0.8125rem]">
+          © {new Date().getFullYear()}{" "}
+          <span className="serif text-[1rem] text-[var(--contact-fg)]">{profile.name}</span>
         </p>
 
-        <nav aria-label="Footer">
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="text-sm link-quiet">
-                  {link.label}
-                </Link>
+        <div className="flex items-center gap-5">
+          <ul className="flex items-center gap-1">
+            {socials.map(({ href, label, Icon, external }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  aria-label={external ? `${label} (opens in a new tab)` : label}
+                  {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+                  className="link-quiet grid size-9 place-items-center rounded-full"
+                >
+                  <Icon className="size-4" />
+                </a>
               </li>
             ))}
-            <li>
-              <a href={profile.github} target="_blank" rel="noreferrer" className="text-sm link-quiet">
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="text-sm link-quiet">
-                LinkedIn
-              </a>
-            </li>
           </ul>
-        </nav>
+          <a href="#main-content" className="link-quiet text-[0.8125rem]">
+            Back to top ↑
+          </a>
+        </div>
       </div>
     </footer>
   );

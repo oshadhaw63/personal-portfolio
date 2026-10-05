@@ -1,50 +1,48 @@
-import Link from "next/link";
+import { ProjectLinks, TechList } from "@/components/project-showcase";
+import { ProjectVisual } from "@/components/project-visual";
+import type { Project } from "@/types/portfolio";
 
-import { ArrowRightIcon } from "@/components/icons";
-import type { Project, ProjectStatus } from "@/types/portfolio";
+/** Stacked project card used below the desktop showcase breakpoint. */
+export function ProjectCard({ project, index, total }: { project: Project; index: number; total: number }) {
+  const pad = (value: number) => String(value).padStart(2, "0");
 
-const statusDot: Record<ProjectStatus, string> = {
-  Completed: "bg-emerald-500",
-  "Working MVP": "bg-sky-500",
-  "In progress": "bg-amber-500",
-};
-
-export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="card group h-full p-6">
-      <div className="flex items-center gap-3 text-xs text-muted">
-        <span>{project.kind}</span>
-        <span aria-hidden="true">·</span>
-        <span className="inline-flex items-center gap-1.5">
-          <span className={`size-1.5 rounded-full ${statusDot[project.status]}`} aria-hidden="true" />
-          {project.status}
+    <article className="flex h-full flex-col rounded-[1.25rem] border border-line bg-card p-4 sm:p-5">
+      <ProjectVisual project={project} sizes="(min-width: 640px) 45vw, 92vw" />
+
+      <p className="eyebrow mt-5">
+        <span className="eyebrow-num">
+          {pad(index + 1)} / {pad(total)}
         </span>
-      </div>
-
-      <h3 className="mt-3 text-xl font-semibold tracking-tight">
-        <Link href={`/projects/${project.slug}`}>
-          <span className="absolute inset-0" aria-hidden="true" />
-          {project.title}
-        </Link>
-      </h3>
-
-      <p className="mt-2.5 text-[0.9375rem] leading-7 text-muted">{project.summary}</p>
-
-      <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Technologies">
-        {project.technologies.slice(0, 4).map((technology) => (
-          <li key={technology} className="tag">
-            {technology}
-          </li>
-        ))}
-        {project.technologies.length > 4 ? (
-          <li className="tag">+{project.technologies.length - 4}</li>
-        ) : null}
-      </ul>
-
-      <p className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-fg">
-        Read more
-        <ArrowRightIcon className="size-4 transition group-hover:translate-x-0.5" />
+        <span className="eyebrow-rule" aria-hidden="true" />
+        <span>{project.kind}</span>
       </p>
+
+      <h3 className="mt-3 text-[1.625rem] font-semibold leading-tight tracking-[-0.03em]">{project.title}</h3>
+      <p className="mt-1 text-[0.8125rem] text-muted">
+        {project.role} · {project.status}
+      </p>
+      <p className="mt-3 text-[0.9375rem] leading-7 text-muted">{project.summary}</p>
+
+      <details className="group mt-4 border-t border-line pt-3">
+        <summary className="flex cursor-pointer list-none items-center justify-between py-1 text-[0.8125rem] font-medium [&::-webkit-details-marker]:hidden">
+          Key features
+          <span className="text-muted transition group-open:rotate-45" aria-hidden="true">
+            +
+          </span>
+        </summary>
+        <ul className="mt-2 space-y-2 pb-1">
+          {project.highlights.map((highlight) => (
+            <li key={highlight} className="flex gap-3 text-[0.875rem] leading-6">
+              <span className="mt-2.5 h-px w-3 shrink-0 bg-fg" aria-hidden="true" />
+              <span>{highlight}</span>
+            </li>
+          ))}
+        </ul>
+      </details>
+
+      <TechList technologies={project.technologies} className="mt-4" />
+      <ProjectLinks project={project} className="mt-auto pt-6" />
     </article>
   );
 }
